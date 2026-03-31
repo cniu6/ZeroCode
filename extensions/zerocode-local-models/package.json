@@ -1,0 +1,280 @@
+{
+  "name": "zerocode-local-models",
+  "displayName": "ZeroCode Local Models",
+  "description": "Local-first language model providers for ZeroCode.",
+  "version": "0.0.1",
+  "publisher": "zerocode",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cniu6/ZeroCode.git"
+  },
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "enabledApiProposals": [
+    "chatProvider"
+  ],
+  "capabilities": {
+    "virtualWorkspaces": true,
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "extensionKind": [
+    "ui"
+  ],
+  "main": "./out/extension",
+  "activationEvents": [
+    "onLanguageModelChatProvider:zerocode-ollama",
+    "onLanguageModelChatProvider:zerocode-openai-compatible",
+    "onCommand:zerocode.localModels.addProvider",
+    "onCommand:zerocode.localModels.addOllama",
+    "onCommand:zerocode.localModels.addLMStudio",
+    "onCommand:zerocode.localModels.addOpenAICompatible",
+    "onCommand:zerocode.localModels.installRecommendedOllamaModel",
+    "onCommand:zerocode.localModels.refreshProviders",
+    "onCommand:zerocode.localModels.manageModels",
+    "onCommand:zerocode.localModels.openChat",
+    "onCommand:zerocode.localModels.startChat",
+    "onCommand:zerocode.localModels.openWalkthrough"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "zerocode.localModels.addProvider",
+        "title": "Add Local Model Provider...",
+        "category": "ZeroCode"
+      },
+      {
+        "command": "zerocode.localModels.addOllama",
+        "title": "Add Ollama Provider",
+        "category": "ZeroCode"
+      },
+      {
+        "command": "zerocode.localModels.addLMStudio",
+        "title": "Add LM Studio Provider",
+        "category": "ZeroCode"
+      },
+      {
+        "command": "zerocode.localModels.addOpenAICompatible",
+        "title": "Add OpenAI-Compatible Provider",
+        "category": "ZeroCode"
+      },
+      {
+        "command": "zerocode.localModels.installRecommendedOllamaModel",
+        "title": "Install Recommended Ollama Model...",
+        "category": "ZeroCode"
+      },
+      {
+        "command": "zerocode.localModels.refreshProviders",
+        "title": "Refresh Local Model Providers",
+        "category": "ZeroCode"
+      },
+      {
+        "command": "zerocode.localModels.manageModels",
+        "title": "Manage Chat Models",
+        "category": "ZeroCode"
+      },
+      {
+        "command": "zerocode.localModels.openChat",
+        "title": "Open Local Chat",
+        "category": "ZeroCode"
+      },
+      {
+        "command": "zerocode.localModels.startChat",
+        "title": "Start Local Chat",
+        "category": "ZeroCode"
+      },
+      {
+        "command": "zerocode.localModels.openWalkthrough",
+        "title": "Open Local Model Setup Guide",
+        "category": "ZeroCode"
+      }
+    ],
+    "languageModelChatProviders": [
+      {
+        "vendor": "zerocode-ollama",
+        "displayName": "Ollama",
+        "configuration": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "description": "Optional label shown alongside models from this provider.",
+              "default": "Ollama"
+            },
+            "endpoint": {
+              "type": "string",
+              "description": "Base URL for the Ollama OpenAI-compatible endpoint.",
+              "default": "http://127.0.0.1:11434/v1"
+            },
+            "requestTimeout": {
+              "type": "integer",
+              "description": "Request timeout in milliseconds.",
+              "default": 120000
+            },
+            "models": {
+              "type": "string",
+              "description": "Optional comma-separated model ids to use when model discovery is unavailable."
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "description": "Fallback input token limit used when the provider does not report one.",
+              "default": 32768
+            },
+            "maxOutputTokens": {
+              "type": "integer",
+              "description": "Fallback output token limit used when the provider does not report one.",
+              "default": 4096
+            },
+            "imageInput": {
+              "type": "boolean",
+              "description": "Enable image input for models behind this provider.",
+              "default": false
+            },
+            "defaultForChat": {
+              "type": "boolean",
+              "description": "Mark the first discovered model in this provider group as the chat default.",
+              "default": false
+            }
+          }
+        }
+      },
+      {
+        "vendor": "zerocode-openai-compatible",
+        "displayName": "OpenAI Compatible",
+        "configuration": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "description": "Optional label shown alongside models from this provider.",
+              "default": "OpenAI Compatible"
+            },
+            "endpoint": {
+              "type": "string",
+              "description": "Base URL for the OpenAI-compatible endpoint.",
+              "default": "http://127.0.0.1:1234/v1"
+            },
+            "apiKey": {
+              "type": "string",
+              "description": "Optional API key used as a Bearer token.",
+              "secret": true
+            },
+            "requestTimeout": {
+              "type": "integer",
+              "description": "Request timeout in milliseconds.",
+              "default": 120000
+            },
+            "models": {
+              "type": "string",
+              "description": "Optional comma-separated model ids to use when model discovery is unavailable."
+            },
+            "maxInputTokens": {
+              "type": "integer",
+              "description": "Fallback input token limit used when the provider does not report one.",
+              "default": 65536
+            },
+            "maxOutputTokens": {
+              "type": "integer",
+              "description": "Fallback output token limit used when the provider does not report one.",
+              "default": 8192
+            },
+            "imageInput": {
+              "type": "boolean",
+              "description": "Enable image input for models behind this provider.",
+              "default": false
+            },
+            "defaultForChat": {
+              "type": "boolean",
+              "description": "Mark the first discovered model in this provider group as the chat default.",
+              "default": false
+            }
+          }
+        }
+      }
+    ],
+    "walkthroughs": [
+      {
+        "id": "zerocode.localModelsWelcome",
+        "title": "Set up local models",
+        "description": "Connect Ollama, LM Studio, or another OpenAI-compatible local server to ZeroCode chat.",
+        "featuredFor": [
+          "package.json",
+          "pyproject.toml",
+          "go.mod",
+          "Cargo.toml"
+        ],
+        "steps": [
+          {
+            "id": "addOllama",
+            "title": "Add Ollama in one command",
+            "description": "Use the recommended preset to add a local Ollama server at `http://127.0.0.1:11434/v1`.\n[Add Ollama](command:zerocode.localModels.addOllama)\n[Install a recommended model](command:zerocode.localModels.installRecommendedOllamaModel)\n[Open Ollama docs](https://ollama.com/download)",
+            "completionEvents": [
+              "onCommand:zerocode.localModels.addOllama",
+              "onCommand:zerocode.localModels.addProvider",
+              "onCommand:zerocode.localModels.installRecommendedOllamaModel"
+            ],
+            "media": {
+              "markdown": "media/add-ollama.md"
+            }
+          },
+          {
+            "id": "addCompatibleProvider",
+            "title": "Add LM Studio or another compatible server",
+            "description": "If you use LM Studio, vLLM, LocalAI, or another OpenAI-compatible endpoint, pick the matching preset.\n[Add LM Studio](command:zerocode.localModels.addLMStudio)\n[Add OpenAI-Compatible Provider](command:zerocode.localModels.addOpenAICompatible)",
+            "completionEvents": [
+              "onCommand:zerocode.localModels.addProvider",
+              "onCommand:zerocode.localModels.addLMStudio",
+              "onCommand:zerocode.localModels.addOpenAICompatible"
+            ],
+            "media": {
+              "markdown": "media/add-compatible-provider.md"
+            }
+          },
+          {
+            "id": "manageModels",
+            "title": "Choose and tune chat models",
+            "description": "Open the model manager to enable the provider, inspect discovered models, and adjust per-model settings such as `temperature` or `maxTokens`.\n[Manage chat models](command:zerocode.localModels.manageModels)",
+            "completionEvents": [
+              "onCommand:zerocode.localModels.manageModels",
+              "onCommand:workbench.action.chat.manage"
+            ],
+            "media": {
+              "markdown": "media/manage-models.md"
+            }
+          },
+          {
+            "id": "startChat",
+            "title": "Open local chat and start using the model",
+            "description": "Launch local chat after setup. If no local models are ready yet, ZeroCode will guide you to the next recommended setup step. If discovery is unavailable, set the provider group's `models` field to a comma-separated fallback list and then refresh.\n[Start local chat](command:zerocode.localModels.startChat)\n[Refresh providers](command:zerocode.localModels.refreshProviders)",
+            "completionEvents": [
+              "onCommand:zerocode.localModels.startChat",
+              "onCommand:zerocode.localModels.openChat",
+              "onCommand:workbench.action.chat.open",
+              "onCommand:workbench.action.chat.openNewChatSessionInPlace.local"
+            ],
+            "media": {
+              "markdown": "media/start-chat.md"
+            }
+          }
+        ]
+      }
+    ],
+    "viewsWelcome": [
+      {
+        "view": "workbench.panel.chat.view.copilot",
+        "contents": "Use local-first models in ZeroCode.\n[Start Local Chat](command:zerocode.localModels.startChat)\n[Add Ollama](command:zerocode.localModels.addOllama)\n[Install a Recommended Ollama Model](command:zerocode.localModels.installRecommendedOllamaModel)\n[Add LM Studio](command:zerocode.localModels.addLMStudio)\n[Manage Chat Models](command:zerocode.localModels.manageModels)\n[Open Setup Guide](command:zerocode.localModels.openWalkthrough)"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../../gulpfile.mjs compile-extension:zerocode-local-models",
+    "watch": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../../gulpfile.mjs watch-extension:zerocode-local-models",
+    "vscode:prepublish": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../../gulpfile.mjs compile-extension:zerocode-local-models"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.10"
+  }
+}

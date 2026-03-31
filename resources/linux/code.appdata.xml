@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+	<id>@@NAME@@.desktop</id>
+	<metadata_license>@@LICENSE@@</metadata_license>
+	<project_license>@@LICENSE@@</project_license>
+	<name>@@NAME_LONG@@</name>
+	<url type="homepage">https://github.com/cniu6/ZeroCode</url>
+	<summary>ZeroCode. Local-first AI coding.</summary>
+	<description>
+		<p>ZeroCode combines a modern code editor with a local-first AI workflow built for private, fast coding on your own machine.</p>
+	</description>
+	<screenshots>
+		<screenshot type="default">
+			<image>https://raw.githubusercontent.com/cniu6/ZeroCode/main/resources/server/code-512.png</image>
+			<caption>Using ZeroCode with local-first AI chat and coding tools</caption>
+		</screenshot>
+	</screenshots>
+</component>
